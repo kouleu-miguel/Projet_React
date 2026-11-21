@@ -89,3 +89,9 @@ body {
   margin-top: 25px;
   margin: 5px 20px;
 }
+
+.article-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
