@@ -1,6 +1,4 @@
-
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -15,7 +13,21 @@ import { articles } from "./types/article";
 import type { Article } from "./types/article";
 
 function App() {
-  const [articleList, setArticleList] = useState<Article[]>(articles);
+  // Récupérer les articles sauvegardés au démarrage
+  const [articleList, setArticleList] = useState<Article[]>(() => {
+    const savedArticles = localStorage.getItem("articles");
+
+    if (savedArticles) {
+      return JSON.parse(savedArticles) as Article[];
+    }
+
+    return articles;
+  });
+
+  // Sauvegarder les articles à chaque modification
+  useEffect(() => {
+    localStorage.setItem("articles", JSON.stringify(articleList));
+  }, [articleList]);
 
   // Ajouter un article
   function handleAddArticle(newArticle: Article) {

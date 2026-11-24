@@ -19,7 +19,7 @@ function NewArticlePage({ onAddArticle }: NewArticlePageProps) {
     event.preventDefault();
 
     const newArticle: Article = {
-      id: crypto.randomUUID(),
+      id: Date.now().toString(),
       title: title.trim(),
       category: category.trim(),
       content: content.trim(),
