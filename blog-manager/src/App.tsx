@@ -1,4 +1,5 @@
 
+
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -16,11 +17,32 @@ import type { Article } from "./types/article";
 function App() {
   const [articleList, setArticleList] = useState<Article[]>(articles);
 
+  // Ajouter un article
   function handleAddArticle(newArticle: Article) {
     setArticleList((previousArticles) => [
       ...previousArticles,
       newArticle,
     ]);
+  }
+
+  // Modifier un article
+  function handleUpdateArticle(updatedArticle: Article) {
+    setArticleList((previousArticles) =>
+      previousArticles.map((article) => {
+        if (article.id === updatedArticle.id) {
+          return updatedArticle;
+        } else {
+          return article;
+        }
+      }),
+    );
+  }
+
+  // Supprimer un article
+  function handleDeleteArticle(id: string) {
+    setArticleList((previousArticles) =>
+      previousArticles.filter((article) => article.id !== id),
+    );
   }
 
   return (
@@ -32,7 +54,13 @@ function App() {
 
         <Route
           path="/articles"
-          element={<ArticlesPage articles={articleList} />}
+          element={
+            <ArticlesPage
+              articles={articleList}
+              onUpdateArticle={handleUpdateArticle}
+              onDeleteArticle={handleDeleteArticle}
+            />
+          }
         />
 
         <Route
