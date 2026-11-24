@@ -284,3 +284,48 @@ body {
   opacity: 0.85;
 }
 
+
+.article-filters {
+  display: flex;
+  gap: 15px;
+  margin: 25px 30px;
+  flex-wrap: wrap;
+}
+
+.article-filters input,
+.article-filters select {
+  padding: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.article-filters input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.article-filters select {
+  min-width: 180px;
+  background-color: white;
+}
+
+.no-articles {
+  text-align: center;
+  margin: 40px;
+  color: #666666;
+  font-size: 17px;
+}
+
+@media (max-width: 600px) {
+  .article-filters {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .article-filters input,
+  .article-filters select {
+    width: 100%;
+  }
+}
+
