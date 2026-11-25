@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { FormEvent } from "react";
@@ -15,8 +16,46 @@ function NewArticlePage({ onAddArticle }: NewArticlePageProps) {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
 
+  const [errors, setErrors] = useState({
+    title: "",
+    category: "",
+    content: "",
+  });
+
+  function validateForm() {
+    const newErrors = {
+      title: "",
+      category: "",
+      content: "",
+    };
+
+    if (title.trim() === "") {
+      newErrors.title = "Le titre est obligatoire.";
+    }
+
+    if (category.trim() === "") {
+      newErrors.category = "La catégorie est obligatoire.";
+    }
+
+    if (content.trim() === "") {
+      newErrors.content = "Le contenu est obligatoire.";
+    }
+
+    setErrors(newErrors);
+
+    return (
+      newErrors.title === "" &&
+      newErrors.category === "" &&
+      newErrors.content === ""
+    );
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     const newArticle: Article = {
       id: Date.now().toString(),
@@ -35,6 +74,7 @@ function NewArticlePage({ onAddArticle }: NewArticlePageProps) {
     <main className="new-article-page">
       <div className="form-container">
         <h2>Créer un nouvel article</h2>
+
         <p className="form-description">
           Partage tes connaissances et tes expériences.
         </p>
@@ -42,6 +82,7 @@ function NewArticlePage({ onAddArticle }: NewArticlePageProps) {
         <form className="article-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">Titre</label>
+
             <input
               id="title"
               type="text"
@@ -50,10 +91,15 @@ function NewArticlePage({ onAddArticle }: NewArticlePageProps) {
               onChange={(event) => setTitle(event.target.value)}
               required
             />
+
+            {errors.title && (
+              <p className="error-message">{errors.title}</p>
+            )}
           </div>
 
           <div className="form-group">
             <label htmlFor="category">Catégorie</label>
+
             <input
               id="category"
               type="text"
@@ -62,10 +108,15 @@ function NewArticlePage({ onAddArticle }: NewArticlePageProps) {
               onChange={(event) => setCategory(event.target.value)}
               required
             />
+
+            {errors.category && (
+              <p className="error-message">{errors.category}</p>
+            )}
           </div>
 
           <div className="form-group">
             <label htmlFor="content">Contenu</label>
+
             <textarea
               id="content"
               placeholder="Écris ton article ici..."
@@ -74,10 +125,15 @@ function NewArticlePage({ onAddArticle }: NewArticlePageProps) {
               rows={7}
               required
             />
+
+            {errors.content && (
+              <p className="error-message">{errors.content}</p>
+            )}
           </div>
 
           <div className="form-group">
             <label htmlFor="author">Auteur</label>
+
             <input
               id="author"
               type="text"
