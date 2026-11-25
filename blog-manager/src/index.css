@@ -439,8 +439,212 @@ select:focus-visible {
 }
 
 @media (max-width: 600px) {
+
+/* ========================================
+   RESPONSIVE DESIGN - TABLETTES
+======================================== */
+
+@media (max-width: 900px) {
+  .article-list {
+    gap: 18px;
+    padding: 0 20px;
+  }
+
+  .article-card {
+    padding: 20px;
+  }
+
+  .header {
+    padding: 18px 20px;
+  }
+
+  .header nav {
+    gap: 18px;
+  }
+
+  .home-intro {
+    padding: 50px 20px 35px;
+  }
+
+  .form-container {
+    max-width: 620px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - SMARTPHONES
+======================================== */
+
+@media (max-width: 600px) {
+  /* HEADER */
+
+  .header {
+    padding: 18px 15px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .header nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+  }
+
+  .header nav a {
+    font-size: 14px;
+  }
+
+  /* TITRES ET ACCUEIL */
+
+  .home-intro {
+    padding: 40px 15px 30px;
+  }
+
+  .home-intro h2 {
+    font-size: 28px;
+  }
+
+  .home-intro p {
+    font-size: 15px;
+  }
+
+  main > h2 {
+    font-size: 24px;
+    margin: 20px 15px;
+  }
+
+  /* LISTE ET CARTES D'ARTICLES */
+
+  .article-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .article-card {
+    padding: 20px;
+  }
+
+  .article-card h2 {
+    font-size: 19px;
+  }
+
+  .article-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .article-actions button {
+    flex: 1 1 120px;
+  }
+
+  /* FILTRES */
+
+  .article-filters {
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 15px;
+    padding: 0;
+  }
+
+  .article-filters input,
+  .article-filters select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* FORMULAIRES */
+
   .new-article-page {
     padding: 25px 12px;
+  }
+
+  .form-container {
+    padding: 22px 18px;
+  }
+
+  .form-container h2 {
+    font-size: 23px;
+  }
+
+  /* MODALE DE MODIFICATION */
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .edit-modal {
+    padding: 22px 18px;
+    max-height: 85vh;
+  }
+
+  .edit-modal h2 {
+    font-size: 21px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+
+  /* FOOTER */
+
+  .footer {
+    padding: 18px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - PETITS SMARTPHONES
+======================================== */
+
+@media (max-width: 380px) {
+  .logo {
+    font-size: 21px;
+  }
+
+  .header nav {
+    gap: 10px 14px;
+  }
+
+  .header nav a {
+    font-size: 13px;
+  }
+
+  .home-intro h2 {
+    font-size: 24px;
+  }
+
+  .article-card {
+    padding: 16px;
+  }
+
+  .article-actions {
+    flex-direction: column;
+  }
+
+  .article-actions button {
+    width: 100%;
+  }
+
+  .form-container {
+    padding: 18px 14px;
+  }
+}
+
   }
 
   .form-container {
